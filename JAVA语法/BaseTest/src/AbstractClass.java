@@ -12,9 +12,18 @@ public abstract class AbstractClass {
     protected int j = 0;
     protected int k = 0;
 
-    private static int func(int i, int j) {
+    public AbstractClass() {
+        this(0, 0);
+    }
+
+    public AbstractClass(int j, int k) {
+        this.j = j;
+        this.k = k;
+    }
+
+    protected int func(int i, int j) {
         return i + j;
     }
 
-    public abstract int funx();
+    public abstract int abstractFunc();
 }
