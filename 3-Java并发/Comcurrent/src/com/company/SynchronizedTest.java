@@ -45,16 +45,6 @@ class SynchronizedExample {
             }
         }
     }
-
-    static synchronized void func() throws InterruptedException {
-        for (int i = 0; i < 5; i++) {
-            long threadId = Thread.currentThread().getId();
-            System.out.println(threadId + " " + i + " ");
-            if (threadId % 2 == 0) {
-                Thread.sleep(2);
-            }
-        }
-    }
 }
 
 
