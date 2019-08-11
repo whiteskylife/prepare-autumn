@@ -15,7 +15,7 @@ public class SynchronizedTest {
     public static void main(String[] args) {
         ExecutorService executorService = Executors.newCachedThreadPool();
         for (int i = 0; i < 3; i++) {
-            executorService.execute(new MyRunnable());
+            executorService.execute(new MyRunnableInWait());
         }
         executorService.shutdown();
     }
@@ -24,7 +24,7 @@ public class SynchronizedTest {
 class MyRunnable implements Runnable {
     @Override
     public void run() {
-        SynchronizedExample s = new SynchronizedExample();
+        SynchronizedExampleInWait s = new SynchronizedExampleInWait();
         try {
             s.func();
         } catch (InterruptedException e) {
@@ -35,7 +35,7 @@ class MyRunnable implements Runnable {
 
 class SynchronizedExample {
     public void func() throws InterruptedException {
-        synchronized (SynchronizedExample.class) {
+        synchronized (SynchronizedExampleInWait.class) {
             for (int i = 0; i < 5; i++) {
                 long threadId = Thread.currentThread().getId();
                 System.out.println(threadId + " " + i + " ");
