@@ -2,7 +2,7 @@ package com.company.juc;
 
 /**
  * date    2019-09-04
- * time    13:58
+ * time    14:48
  *
  * @author thisxzj - 中建
  */
@@ -11,7 +11,7 @@ import java.util.concurrent.CyclicBarrier;
 
 //   @ author :zjxu     time:2019/1/6
 
-public class Main {
+public class CyclicBarrierMain {
     public static void main(String[] args) {
         final int N = 10;
         Thread[] allSolider = new Thread[N];
