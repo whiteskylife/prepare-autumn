@@ -34,17 +34,17 @@ DNS的左右就是将 `www.xxx.cn`这样的字符串解析成IP地址。
 
 例如cctv的邮件域名：
 
-![img](/Users/thisxzj/GitHub/prepare-autumn/photo/cctv域名.png)
+![img](./photo/cctv域名.png)
 
 从语法上讲，每一个域名都是有标号(label)序列组成，而各标号之间用点(小数点)隔开。
 
 域名服务器：
 
-![img](/Users/thisxzj/GitHub/prepare-autumn/photo/SouthEastaa.png)
+![img](./photo/SouthEastaa.png)
 
 递归查询和迭代查询：
 
-![img](/Users/thisxzj/GitHub/prepare-autumn/photo/SouthEast.png)
+![img](./photo/SouthEast.png)
 
 迭代查询的特点：当服务器收到客户端发出的迭代查询请求报文时，要么给出所要查询的IP地址，要么告诉本地服务器：“你下一步应当向哪一个服务器进行查询”。
 

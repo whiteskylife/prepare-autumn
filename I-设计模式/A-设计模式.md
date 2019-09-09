@@ -228,11 +228,6 @@ public interface Product {
 ```
 
 ```java
-public class ConcreteProduct implements Product {
-}
-```
-
-```java
 public class ConcreteProduct1 implements Product {
 }
 ```
@@ -242,9 +237,15 @@ public class ConcreteProduct2 implements Product {
 }
 ```
 
+```java
+public class ConcreteProduct3 implements Product {
+}
+```
+
 以下的 Client 类包含了实例化的代码，这是一种错误的实现。如果在客户类中存在这种实例化代码，就需要考虑将代码放到简单工厂中。
 
 ```java
+// 错误例子
 public class Client {
 
     public static void main(String[] args) {
@@ -254,8 +255,8 @@ public class Client {
             product = new ConcreteProduct1();
         } else if (type == 2) {
             product = new ConcreteProduct2();
-        } else {
-            product = new ConcreteProduct();
+        } else if (type == 3) {
+            product = new ConcreteProduct3();
         }
         // do something with the product
     }
@@ -269,9 +270,11 @@ public class SimpleFactory {
 
     public Product createProduct(int type) {
         if (type == 1) {
-            return new ConcreteProduct1();
+            product = new ConcreteProduct1();
         } else if (type == 2) {
-            return new ConcreteProduct2();
+            product = new ConcreteProduct2();
+        } else if (type == 3) {
+            product = new ConcreteProduct3();
         }
         return new ConcreteProduct();
     }
@@ -2988,23 +2991,3 @@ public class ImageViewer {
 
 - java.lang.reflect.Proxy
 - RMI
-
-# 参考资料
-
-- 弗里曼. Head First 设计模式 [M]. 中国电力出版社, 2007.
-- Gamma E. 设计模式: 可复用面向对象软件的基础 [M]. 机械工业出版社, 2007.
-- Bloch J. Effective java[M]. Addison-Wesley Professional, 2017.
-- [Design Patterns](http://www.oodesign.com/)
-- [Design patterns implemented in Java](http://java-design-patterns.com/)
-- [The breakdown of design patterns in JDK](http://www.programering.com/a/MTNxAzMwATY.html)
-
-
-
-
-# 微信公众号
-
-
-更多精彩内容将发布在微信公众号 CyC2018 上，你也可以在公众号后台和我交流学习和求职相关的问题。另外，公众号提供了该项目的 PDF 等离线阅读版本，后台回复 "下载" 即可领取。公众号也提供了一份技术面试复习大纲，不仅系统整理了面试知识点，而且标注了各个知识点的重要程度，从而帮你理清多而杂的面试知识点，后台回复 "大纲" 即可领取。我基本是按照这个大纲来进行复习的，对我拿到了 BAT 头条等 Offer 起到很大的帮助。你们完全可以和我一样根据大纲上列的知识点来进行复习，就不用看很多不重要的内容，也可以知道哪些内容很重要从而多安排一些复习时间。
-
-
-<br><div align="center"><img width="320px" src="https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/other/公众号海报6.png"></img></div>

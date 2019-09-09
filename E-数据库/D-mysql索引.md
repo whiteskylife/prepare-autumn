@@ -29,7 +29,7 @@ mysql> select * from building limit 10;
 10 rows in set (0.00 sec)
 ```
 
-# 索引的建立
+# 索引的种类
 
 ## 单列索引
 
@@ -100,6 +100,12 @@ select * from tableName where match(col_1, col_2) against(‘aa′, ‘bb′);
 ```sql
 alter table tableName add primary key(col_1);
 ```
+
+## 哈希索引
+
+hash索引只有Memory支持。每一个hash索引只保存字段的哈希码和指向这条记录的指针。所以hash索引只能用来等值比较，不能用来范围比较。
+
+能够使用到hash索引的运算符有：= , != , <> , <=> , in( ) 。
 
 # 外键
 
@@ -223,7 +229,7 @@ mysql最终选择的是B+树。
   - B 树在找到具体的数值以后，则结束。
   - B+ 树则需要通过索引找到叶子结点中的数据才结束，也就是说 B+ 树的搜索过程中走了一条从根结点到叶子结点的路径。
 
-## 数据库的索引
+## 索引树的选择
 
 B+树比B树更加适合做数据库的索引！
 
@@ -302,6 +308,8 @@ InnoDB 的聚簇索引的数据行存放在B-Tree 的叶子页中。
 
 # 查询性能优化
 
+## explain
+
 使用explain查询优化结果
 
 1. 这是一个走索引的查询语句
@@ -332,7 +340,7 @@ InnoDB 的聚簇索引的数据行存放在B-Tree 的叶子页中。
    +----+-------------+----------+------------+------+---------------+------+---------+------+------+----------+-------------+
    ```
 
-## select_type
+### select_type
 
 1. simple：表示不需要union操作或者不包含子查询的简单select查询。有连接查询时，外层的查询为simple，且只有一个
 2. primary：一个需要union操作或者含有子查询的select，位于最外层的单位查询的select_type即为primary。且只有一个
@@ -343,7 +351,7 @@ InnoDB 的聚簇索引的数据行存放在B-Tree 的叶子页中。
 7. dependent subquery：与dependent union类似，表示这个subquery的查询要受到外部表查询的影响
 8. derived：from字句中出现的子查询，也叫做派生表，其他数据库中可能叫做内联视图或嵌套select
 
-## type
+### type
 
 依次从好到差：system，const，eq_ref，ref，fulltext，ref_or_null，unique_subquery，index_subquery，range，index_merge，index，all。
 
@@ -363,3 +371,21 @@ InnoDB 的聚簇索引的数据行存放在B-Tree 的叶子页中。
 10. index_merge：表示查询使用了两个以上的索引，最后取交集或者并集，常见and ，or的条件使用了不同的索引，官方排序这个在ref_or_null之后，但是实际上由于要读取所个索引，性能可能大部分时间都不如range
 11. index：索引全表扫描，把索引从头到尾扫一遍，常见于使用索引列就可以处理不需要读取数据文件的查询、可以使用索引排序或者分组的查询。
 12. all：这个就是全表扫描数据文件，然后再在server层进行过滤返回符合要求的记录。
+
+## 减少返回的字段
+
+只查询需要的字段。
+
+不要使用 `select *`语句。
+
+## 减少返回的记录数
+
+使用 `LIMIT` 语句来取出想要的记录。
+
+## 减少条件语句的全表扫描
+
+建立索引减少语句的全表扫描。
+
+
+
+## 拆分大的 DELETE 或 INSERT 语句

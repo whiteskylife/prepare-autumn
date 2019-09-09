@@ -346,7 +346,7 @@ class SynchronizedExample {
 
 ```java
 class SynchronizedExample {
-    public void func() throws InterruptedException {
+    public static void func() throws InterruptedException {
         synchronized (SynchronizedExample.class) {
             for (int i = 0; i < 5; i++) {
                 long threadId = Thread.currentThread().getId();
