@@ -16,16 +16,18 @@ DNS 可以使用 UDP 或者 TCP 进行传输，使用的端口号都为 53。大
 FTP 使用 TCP 进行连接，它需要两个连接来传送一个文件：
 
 - 控制连接：服务器打开端口号 21 等待客户端的连接，客户端主动建立连接后，使用这个连接将客户端的命令传送给服务器，并传回服务器的应答。
-- 数据连接：用来传送一个文件数据。
+- 数据连接：服务端使用20号端口来传送一个文件数据。
 
 根据数据连接是否是服务器端主动建立，FTP 有主动和被动两种模式：
 
 - 主动模式：服务器端主动建立数据连接，其中服务器端的端口号为 20，客户端的端口号随机，但是必须大于 1024，因为 0\~1023 是熟知端口号。
 
-<div align="center"> <img src="/Users/thisxzj/Workspace/CS-Notes/notes/pics/03f47940-3843-4b51-9e42-5dcaff44858b.jpg"/> </div><br>
+![](/Users/thisxzj/GitHub/prepare-autumn/F-计算机网络/photo/FTP1.jpg)
+
 - 被动模式：客户端主动建立数据连接，其中客户端的端口号由客户端自己指定，服务器端的端口号随机。
 
-<div align="center"> <img src="/Users/thisxzj/Workspace/CS-Notes/notes/pics/be5c2c61-86d2-4dba-a289-b48ea23219de.jpg"/> </div><br>
+![](./photo/FTP2.jpg)
+
 主动模式要求客户端开放端口号给服务器端，需要去配置客户端的防火墙。被动模式只需要服务器端开放端口号即可，无需客户端配置防火墙。但是被动模式会导致服务器端的安全性减弱，因为开放了过多的端口号。
 
 # 动态主机配置协议
@@ -41,7 +43,8 @@ DHCP 工作过程如下：
 3. 如果客户端选择了某个 DHCP 服务器提供的信息，那么就发送 Request 报文给该 DHCP 服务器。
 4. DHCP 服务器发送 Ack 报文，表示客户端此时可以使用提供给它的信息。
 
-<div align="center"> <img src="/Users/thisxzj/Workspace/CS-Notes/notes/pics/23219e4c-9fc0-4051-b33a-2bd95bf054ab.jpg"/> </div><br>
+![](./photo/DHCP.jpg)
+
 # 远程登录协议
 
 TELNET 用于登录到远程主机上，并且远程主机上的输出也会返回。
@@ -54,12 +57,14 @@ TELNET 可以适应许多计算机和操作系统的差异，例如不同操作�
 
 邮件协议包含发送协议和读取协议，发送协议常用 SMTP，读取协议常用 POP3 和 IMAP。
 
-<div align="center"> <img src="/Users/thisxzj/Workspace/CS-Notes/notes/pics/7b3efa99-d306-4982-8cfb-e7153c33aab4.png" width="700"/> </div><br>
+![](./photo/电子邮件.png)
+
 ## 1. SMTP
 
 SMTP 只能发送 ASCII 码，而互联网邮件扩充 MIME 可以发送二进制文件。MIME 并没有改动或者取代 SMTP，而是增加邮件主体的结构，定义了非 ASCII 码的编码规则。
 
-<div align="center"> <img src="/Users/thisxzj/Workspace/CS-Notes/notes/pics/ed5522bb-3a60-481c-8654-43e7195a48fe.png" width=""/> </div><br>
+![](./photo/SMTP.png)
+
 ## 2. POP3
 
 POP3 的特点是只要用户从服务器上读取了邮件，就把该邮件删除。但最新版本的 POP3 可以不删除邮件。

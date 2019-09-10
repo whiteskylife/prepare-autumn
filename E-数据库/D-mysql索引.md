@@ -178,7 +178,7 @@ B-Tree：平衡多路查找树
 
 这就是一个M = 3阶的B - Tree:
 
-![img](/Users/thisxzj/GitHub/prepare-autumn/photo/B-tree.png)
+![img](./photo/B-tree.png)
 
 
 
@@ -195,7 +195,7 @@ B+Tree：有序数组链表+平衡多叉树
 
 这是一个M = 3阶的 B + tree：
 
-![B Plus tree](/Users/thisxzj/GitHub/prepare-autumn/photo/B+tree.png)
+![B Plus tree](./photo/B+tree.png)
 
 mysql最终选择的是B+树。
 

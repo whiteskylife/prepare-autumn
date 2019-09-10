@@ -1,8 +1,7 @@
 # 计算机网络体系结构
 
-![img](../photo/745.png)
+![img](./photo/745.png)
 
-<div align="center"> <img src="pics/0fa6c237-a909-4e2a-a771-2c5485cd8ce0.png" width="450"/> </div><br>
 ## 五层协议
 
 -  **应用层** ：为特定应用程序提供数据传输服务，例如 HTTP、DNS 等协议。数据单位为报文。
