@@ -14,7 +14,8 @@
 
 # TCP 首部格式
 
-<div align="center"> <img src="/Users/thisxzj/Workspace/CS-Notes/notes/pics/55dc4e84-573d-4c13-a765-52ed1dd251f9.png" width="700"/> </div><br>
+![](/Users/thisxzj/GitHub/prepare-autumn/F-计算机网络/photo/TCPHEAD.png)
+
 -  **序号**  ：用于对字节流进行编号，例如序号为 301，表示第一个字节的编号为 301，如果携带的数据长度为 100 字节，那么下一个报文段的序号应为 401。
 
 -  **确认号**  ：期望收到的下一个报文段的序号。例如 B 正确收到 A 发送来的一个报文段，序号为 501，携带的数据长度为 200 字节，因此 B 期望下一个报文段的序号为 701，B 发送给 A 的确认报文段中确认号就为 701。
@@ -139,4 +140,4 @@ TCP 主要通过四个算法来进行拥塞控制：慢开始、拥塞避免、�
 
 慢开始和快恢复的快慢指的是 cwnd 的设定值，而不是 cwnd 的增长速率。慢开始 cwnd 设定为 1，而快恢复 cwnd 设定为 ssthresh。
 
-<div align="center"> <img src="/Users/thisxzj/Workspace/CS-Notes/notes/pics/f61b5419-c94a-4df1-8d4d-aed9ae8cc6d5.png" width="600"/> </div><br>
+![](./photo/快重传快恢复.png)

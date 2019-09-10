@@ -5,7 +5,8 @@ DNS 是一个分布式数据库，提供了主机名和 IP 地址之间相互转
 
 域名具有层次结构，从上到下依次为：根域名、顶级域名、二级域名。
 
-<div align="center"> <img src="/Users/thisxzj/Workspace/CS-Notes/notes/pics/b54eeb16-0b0e-484c-be62-306f57c40d77.jpg"/> </div><br>
+![](./photo/DNS.jpg)
+
 DNS 可以使用 UDP 或者 TCP 进行传输，使用的端口号都为 53。大多数情况下 DNS 使用 UDP 进行传输，这就要求域名解析器和域名服务器都必须自己处理超时和重传从而保证可靠性。在两种情况下会使用 TCP 进行传输：
 
 - 如果返回的响应超过的 512 字节（UDP 最大只支持 512 字节的数据）。
