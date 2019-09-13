@@ -65,26 +65,24 @@
 
 为每个用户分配 m bit 的码片，并且所有的码片正交，对于任意两个码片 <img src="https://latex.codecogs.com/gif.latex?\vec{S}" class="mathjax-pic"/> 和 <img src="https://latex.codecogs.com/gif.latex?\vec{T}" class="mathjax-pic"/> 有
 
-<!-- <div align="center"><img src="https://latex.codecogs.com/gif.latex?\frac{1}{m}\vec{S}\cdot\vec{T}=0" class="mathjax-pic"/></div> <br> -->
+![](/Users/thisxzj/GitHub/prepare-autumn/F-计算机网络/photo/mffy.png)
 
-<div align="center"> <img src="/Users/thisxzj/Workspace/CS-Notes/notes/pics/308a02e9-3346-4251-8c41-bd5536dab491.png" width="100px"> </div><br>
 为了讨论方便，取 m=8，设码片 <img src="https://latex.codecogs.com/gif.latex?\vec{S}" class="mathjax-pic"/> 为 00011011。在拥有该码片的用户发送比特 1 时就发送该码片，发送比特 0 时就发送该码片的反码 11100100。
 
 在计算时将 00011011 记作 (-1 -1 -1 +1 +1 -1 +1 +1)，可以得到
 
-<!-- <div align="center"><img src="https://latex.codecogs.com/gif.latex?\frac{1}{m}\vec{S}\cdot\vec{S}=1" class="mathjax-pic"/></div> <br> -->
+![](/Users/thisxzj/GitHub/prepare-autumn/F-计算机网络/photo/aa1.png)
 
-<!-- <div align="center"><img src="https://latex.codecogs.com/gif.latex?\frac{1}{m}\vec{S}\cdot\vec{S'}=-1" class="mathjax-pic"/></div> <br> -->
+![](/Users/thisxzj/GitHub/prepare-autumn/F-计算机网络/photo/aaa3.png)
 
-<div align="center"> <img src="/Users/thisxzj/Workspace/CS-Notes/notes/pics/6fda1dc7-5c74-49c1-bb79-237a77e43a43.png" width="100px"> </div><br>
-<div align="center"> <img src="/Users/thisxzj/Workspace/CS-Notes/notes/pics/e325a903-f0b1-4fbd-82bf-88913dc2f290.png" width="125px"> </div><br>
 其中 <img src="https://latex.codecogs.com/gif.latex?\vec{S'}" class="mathjax-pic"/> 为 <img src="https://latex.codecogs.com/gif.latex?\vec{S}" class="mathjax-pic"/> 的反码。
 
 利用上面的式子我们知道，当接收端使用码片 <img src="https://latex.codecogs.com/gif.latex?\vec{S}" class="mathjax-pic"/> 对接收到的数据进行内积运算时，结果为 0 的是其它用户发送的数据，结果为 1 的是用户发送的比特 1，结果为 -1 的是用户发送的比特 0。
 
 码分复用需要发送的数据量为原先的 m 倍。
 
-<div align="center"> <img src="/Users/thisxzj/Workspace/CS-Notes/notes/pics/99b6060e-099d-4201-8e86-f8ab3768a7cf.png" width="500px"> </div><br>
+![](/Users/thisxzj/GitHub/prepare-autumn/F-计算机网络/photo/aaaa4.png)
+
 # CSMA/CD 协议
 
 CSMA/CD 表示载波监听多点接入 / 碰撞检测。
@@ -97,12 +95,14 @@ CSMA/CD 表示载波监听多点接入 / 碰撞检测。
 
 当发生碰撞时，站点要停止发送，等待一段时间再发送。这个时间采用  **截断二进制指数退避算法**  来确定。从离散的整数集合 {0, 1, .., (2<sup>k</sup>-1)} 中随机取出一个数，记作 r，然后取 r 倍的争用期作为重传等待时间。
 
-<div align="center"> <img src="/Users/thisxzj/Workspace/CS-Notes/notes/pics/19d423e9-74f7-4c2b-9b97-55890e0d5193.png" width="400"/> </div><br>
+![](/Users/thisxzj/GitHub/prepare-autumn/F-计算机网络/photo/aaaab1.png)
+
 # PPP 协议
 
 互联网用户通常需要连接到某个 ISP 之后才能接入到互联网，PPP 协议是用户计算机和 ISP 进行通信时所使用的数据链路层协议。
 
-<div align="center"> <img src="/Users/thisxzj/Workspace/CS-Notes/notes/pics/e1ab9f28-cb15-4178-84b2-98aad87f9bc8.jpg" width="300"/> </div><br>
+![](/Users/thisxzj/GitHub/prepare-autumn/F-计算机网络/photo/ab1.jpg)
+
 PPP 的帧格式：
 
 - F 字段为帧的定界符
