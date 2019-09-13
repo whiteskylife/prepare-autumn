@@ -5,14 +5,16 @@
 
 将网络层传下来的分组添加首部和尾部，用于标记帧的开始和结束。
 
-<div align="center"> <img src="/Users/thisxzj/Workspace/CS-Notes/notes/pics/29a14735-e154-4f60-9a04-c9628e5d09f4.png" width="300"/> </div><br>
+![](./photo/封装.png)
+
 ## 2. 透明传输
 
 透明表示一个实际存在的事物看起来好像不存在一样。
 
 帧使用首部和尾部进行定界，如果帧的数据部分含有和首部尾部相同的内容，那么帧的开始和结束位置就会被错误的判定。需要在数据部分出现首部尾部相同的内容前面插入转义字符。如果数据部分出现转义字符，那么就在转义字符前面再加个转义字符。在接收端进行处理之后可以还原出原始数据。这个过程透明传输的内容是转义字符，用户察觉不到转义字符的存在。
 
-<div align="center"> <img src="/Users/thisxzj/Workspace/CS-Notes/notes/pics/e738a3d2-f42e-4755-ae13-ca23497e7a97.png" width="500"/> </div><br>
+![](./photo/toumingchuanshu.png)
+
 ## 3. 差错检测
 
 目前数据链路层广泛使用了循环冗余检验（CRC）来检查比特差错。
@@ -39,19 +41,22 @@
 
 频分复用的所有主机在相同的时间占用不同的频率带宽资源。
 
-<div align="center"> <img src="/Users/thisxzj/Workspace/CS-Notes/notes/pics/4aa5e057-bc57-4719-ab57-c6fbc861c505.png" width="350"/> </div><br>
+![](./photo/pinfenfuyong.png)
+
 ## 2. 时分复用
 
 时分复用的所有主机在不同的时间占用相同的频率带宽资源。
 
-<div align="center"> <img src="/Users/thisxzj/Workspace/CS-Notes/notes/pics/67582ade-d44a-46a6-8757-3c1296cc1ef9.png" width="350"/> </div><br>
+![](./photo/shifenfuyong.png)
+
 使用频分复用和时分复用进行通信，在通信的过程中主机会一直占用一部分信道资源。但是由于计算机数据的突发性质，通信过程没必要一直占用信道资源而不让出给其它用户使用，因此这两种方式对信道的利用率都不高。
 
 ## 3. 统计时分复用
 
 是对时分复用的一种改进，不固定每个用户在时分复用帧中的位置，只要有数据就集中起来组成统计时分复用帧然后发送。
 
-<div align="center"> <img src="/Users/thisxzj/Workspace/CS-Notes/notes/pics/6283be2a-814a-4a10-84bf-9592533fe6bc.png" width="350"/> </div><br>
+![](./photo/tongjishifenfuyong.png)
+
 ## 4. 波分复用
 
 光的频分复用。由于光的频率很高，因此习惯上用波长而不是频率来表示所使用的光载波。

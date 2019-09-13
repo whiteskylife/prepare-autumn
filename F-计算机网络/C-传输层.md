@@ -9,7 +9,8 @@
 
 # UDP 首部格式
 
-<div align="center"> <img src="/Users/thisxzj/Workspace/CS-Notes/notes/pics/d4c3a4a1-0846-46ec-9cc3-eaddfca71254.jpg" width="600"/> </div><br>
+![](./photo/UDP.jpg)
+
 首部字段只有 8 个字节，包括源端口、目的端口、长度、检验和。12 字节的伪首部是为了计算检验和临时添加的。
 
 # TCP 首部格式
@@ -32,7 +33,8 @@
 
 # TCP 的三次握手
 
-<div align="center"> <img src="/Users/thisxzj/Workspace/CS-Notes/notes/pics/e92d0ebc-7d46-413b-aec1-34a39602f787.png" width="600"/> </div><br>
+![](./photo/TCP.png)
+
 假设 A 为客户端，B 为服务器端。
 
 - 首先 B 处于 LISTEN（监听）状态，等待客户的连接请求。
@@ -100,7 +102,8 @@ TCP 使用超时重传来实现可靠传输：如果一个已经发送的报文�
 
 接收窗口只会对窗口内最后一个按序到达的字节进行确认，例如接收窗口已经收到的字节为 {31, 34, 35}，其中 {31} 按序到达，而 {34, 35} 就不是，因此只对字节 31 进行确认。发送方得到一个字节的确认之后，就知道这个字节之前的所有字节都已经被接收。
 
-<div align="center"> <img src="/Users/thisxzj/Workspace/CS-Notes/notes/pics/a3253deb-8d21-40a1-aae4-7d178e4aa319.jpg" width="800"/> </div><br>
+![](./photo/滑动窗口.jpg)
+
 # TCP 流量控制
 
 流量控制是为了控制发送方发送速率，保证接收方来得及接收。
@@ -111,7 +114,8 @@ TCP 使用超时重传来实现可靠传输：如果一个已经发送的报文�
 
 如果网络出现拥塞，分组将会丢失，此时发送方会继续重传，从而导致网络拥塞程度更高。因此当出现拥塞时，应当控制发送方的速率。这一点和流量控制很像，但是出发点不同。流量控制是为了让接收方能来得及接收，而拥塞控制是为了降低整个网络的拥塞程度。
 
-<div align="center"> <img src="/Users/thisxzj/Workspace/CS-Notes/notes/pics/51e2ed95-65b8-4ae9-8af3-65602d452a25.jpg" width="500"/> </div><br>
+![](./photo/yongsaikongzhi.jpg)
+
 TCP 主要通过四个算法来进行拥塞控制：慢开始、拥塞避免、快重传、快恢复。
 
 发送方需要维护一个叫做拥塞窗口（cwnd）的状态变量，注意拥塞窗口与发送方窗口的区别：拥塞窗口只是一个状态变量，实际决定发送方能发送多少数据的是发送方窗口。
@@ -121,7 +125,8 @@ TCP 主要通过四个算法来进行拥塞控制：慢开始、拥塞避免、�
 - 接收方有足够大的接收缓存，因此不会发生流量控制；
 - 虽然 TCP 的窗口基于字节，但是这里设窗口的大小单位为报文段。
 
-<div align="center"> <img src="/Users/thisxzj/Workspace/CS-Notes/notes/pics/910f613f-514f-4534-87dd-9b4699d59d31.png" width="800"/> </div><br>
+![](./photo/yongsaibimian.png)
+
 ## 1. 慢开始与拥塞避免
 
 发送的最初执行慢开始，令 cwnd = 1，发送方只能发送 1 个报文段；当收到确认后，将 cwnd 加倍，因此之后发送方能够发送的报文段数量为：2、4、8 ...
