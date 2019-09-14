@@ -1,5 +1,5 @@
 
-# Z进程与线程
+# 进程与线程
 
 ## 1. 进程
 
@@ -9,7 +9,8 @@
 
 下图显示了 4 个程序创建了 4 个进程，这 4 个进程可以并发地执行。
 
-<div align="center"> <img src="../pics/a6ac2b08-3861-4e85-baa8-382287bfee9f.png"/> </div><br>
+![](./photo/进程.png)
+
 ## 2. 线程
 
 线程是独立调度的基本单位。
@@ -39,7 +40,8 @@ QQ 和浏览器是两个进程，浏览器进程里面有很多线程，例如 H
 
 # 进程状态的切换
 
-<div align="center"> <img src="../pics/ProcessState.png" width="500"/> </div><br>
+![](./photo/ProcessState.png)
+
 - 就绪状态（ready）：等待被调度
 - 运行状态（running）
 - 阻塞状态（waiting）：等待资源
@@ -86,7 +88,8 @@ QQ 和浏览器是两个进程，浏览器进程里面有很多线程，例如 H
 - 因为进程切换都要保存进程的信息并且载入新进程的信息，如果时间片太小，会导致进程切换得太频繁，在进程切换上就会花过多时间。
 - 而如果时间片过长，那么实时性就不能得到保证。
 
-<div align="center"> <img src="../pics/8c662999-c16c-481c-9f40-1fdba5bc9167.png"/> </div><br>
+![](./photo/时间片轮转.png)
+
 **2.2 优先级调度** 
 
 为每个进程分配一个优先级，按优先级进行调度。
@@ -97,13 +100,14 @@ QQ 和浏览器是两个进程，浏览器进程里面有很多线程，例如 H
 
 一个进程需要执行 100 个时间片，如果采用时间片轮转调度算法，那么需要交换 100 次。
 
-多级队列是为这种需要连续执行多个时间片的进程考虑，它设置了多个队列，每个队列时间片大小都不同，例如 1,2,4,8,..。进程在第一个队列没执行完，就会被移到下一个队列。这种方式下，之前的进程只需要交换 7 次。
+多级队列是为这种需要连续执行多个时间片的进程考虑，它设置了多个队列，每个队列时间片大小都不同，例如 1,2,4,8,/Users/thisxzj/Files/CS-Notes/notes。进程在第一个队列没执行完，就会被移到下一个队列。这种方式下，之前的进程只需要交换 7 次。
 
 每个队列优先权也不同，最上面的优先权最高。因此只有上一个队列没有进程在排队，才能调度当前队列上的进程。
 
 可以将这种调度算法看成是时间片轮转调度算法和优先级调度算法的结合。
 
-<div align="center"> <img src="../pics/042cf928-3c8e-4815-ae9c-f2780202c68f.png"/> </div><br>
+![](./photo/多级反馈.png)
+
 ## 3. 实时系统
 
 实时系统要求一个请求在一个确定时间内得到响应。
@@ -209,12 +213,12 @@ monitor ProducerConsumer
 
     procedure insert();
     begin
-        // ...
+        // /Users/thisxzj/Files/CS-Notes/notes.
     end;
 
     procedure remove();
     begin
-        // ...
+        // /Users/thisxzj/Files/CS-Notes/notes.
     end;
 end monitor;
 ```
@@ -514,7 +518,8 @@ int pipe(int fd[2]);
 - 只支持半双工通信（单向交替传输）；
 - 只能在父子进程或者兄弟进程中使用。
 
-<div align="center"> <img src="pics/53cd9ade-b0a6-4399-b4de-7f1fbd06cdfb.png"/> </div><br>
+![](./photo/管道.png)
+
 ## 2. FIFO
 
 也称为命名管道，去除了管道只能在父子进程中使用的限制。
@@ -527,7 +532,8 @@ int mkfifoat(int fd, const char *path, mode_t mode);
 
 FIFO 常用于客户-服务器应用程序中，FIFO 用作汇聚点，在客户进程和服务器进程之间传递数据。
 
-<div align="center"> <img src="pics/2ac50b81-d92a-4401-b9ec-f2113ecc3076.png"/> </div><br>
+![](./photo/FIFO.png)
+
 ## 3. 消息队列
 
 相比于 FIFO，消息队列具有以下优点：
