@@ -444,7 +444,6 @@ cp [-adfilprsu] source destination
 ## 链接
 
 <div align="center"> <img src="pics/1e46fd03-0cda-4d60-9b1c-0c256edaf6b2.png" width="450px"> </div><br>
-
 ```html
 # ln [-sf] source_filename dist_filename
 -s ：默认是实体链接，加 -s 为符号链接

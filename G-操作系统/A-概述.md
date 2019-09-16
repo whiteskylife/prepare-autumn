@@ -83,7 +83,8 @@ Linux 的系统调用主要有以下这些：
 
 因为需要频繁地在用户态和核心态之间进行切换，所以会有一定的性能损失。
 
-<div align="center"> <img src="../pics/2_14_microkernelArchitecture.jpg"/> </div><br>
+<div align="center"> <img src="/Users/thisxzj/Workspace/CS-notes/notes/pics/2_14_microkernelArchitecture.jpg"/> </div><br>
+
 # 中断分类
 
 ## 1. 外中断
