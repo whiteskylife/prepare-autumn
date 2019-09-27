@@ -48,6 +48,32 @@ Java 内存模型定义了 8 个操作来完成主内存和工作内存的交互
 
 但是这并不能保证原子性。
 
+所以，使用volatile变量能够保证:
+
+- 每次`读取前`必须先从主内存刷新最新的值。
+- 每次`写入后`必须立即同步回主内存当中。
+
+也就是说，volatile关键字修饰的变量看到的随时是自己的最新值。线程1中对变量v的最新修改，对线程2是可见的。
+
+在每个volatile写操作前插入StoreStore屏障，在写操作后插入StoreLoad屏障。
+在每个volatile读操作前插入LoadLoad屏障，在读操作后插入LoadStore屏障。
+
+- LoadLoad屏障：
+
+  对于这样的语句Load1; LoadLoad; Load2，在Load2及后续读取操作要读取的数据被访问前，保证Load1要读取的数据被读取完毕。
+
+- StoreStore屏障：
+
+  对于这样的语句Store1; StoreStore; Store2，在Store2及后续写入操作执行前，保证Store1的写入操作对其它处理器可见。
+
+- LoadStore屏障：
+
+  对于这样的语句Load1; LoadStore; Store2，在Store2及后续写入操作被刷出前，保证Load1要读取的数据被读取完毕。
+
+- StoreLoad屏障：
+
+  对于这样的语句Store1; StoreLoad; Load2，在Load2及后续所有读取操作执行前，保证Store1的写入对所有处理器可见。**它的开销是四种屏障中最大的。在大多数处理器的实现中，这个屏障是个万能屏障，兼具其它三种内存屏障的功能**
+
 ## 内存模型三大特性
 
 ### 1. 原子性
