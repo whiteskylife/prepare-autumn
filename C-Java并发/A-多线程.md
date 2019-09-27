@@ -20,8 +20,6 @@
 
 线程间切换的成本远小于进程。
 
-
-
 ## 线程状态转换
 
 ![](./photo/线程状态图.png)
@@ -177,7 +175,7 @@ Executor 管理多个异步任务的执行，而无需程序员显式地管理�
 
 - CachedThreadPool：每个任务创建一个线程。
 - FixedThreadPool：一个在构造时固定大小的线程池，所有任务只能使用固定大小的线程。
-- SingleThreadExecutor：相当于大小为 1 的 FixedThreadPool。如果向SingleThreadExecutor提交多个任务，这些任务将排队。从输出结果可以看到，任务按照提交顺序被执行
+- SingleThreadExecutor：相当于大小为 1 的 FixedThreadPool。如果向提交多个任务，这些任务将排队。从输出结果可以看到，任务按照提交顺序被执行
 
 ```java
 public static void main(String[] args) {

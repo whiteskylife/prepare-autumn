@@ -399,6 +399,25 @@ java.lang.InterruptedException: sleep interrupted
 
 上面说到的所有线程池都是使用不同的上面的参数的组合完成的。
 
+## cachedThreadPool
+
+```java
+     public static ExecutorService newCachedThreadPool() {
+        return new ThreadPoolExecutor(0, 
+                                      Integer.MAX_VALUE,
+                                      60L, 
+                                      TimeUnit.SECONDS,
+                                      new SynchronousQueue<Runnable>());
+    }
+```
+
+1. corePoolSize = 0，maximumPoolSize = Integer.MAX_VALUE，即线程数量几乎无限制；
+2. keepAliveTime = 60s，线程空闲60s后自动结束。
+3. workQueue为SynchronousQueue同步队列，使用SynchronousQueue的目的就是保证“对于提交的任务，如果有空闲线程，则使用空闲线程来处理；否则新建一个线程来处理任务”。
+4. 适用场景：快速处理大量耗时较短的任务，如Netty的NIO接受请求时，可使用。
+
+
+
 ## fixedThreadPool
 
 ```java
@@ -430,19 +449,3 @@ java.lang.InterruptedException: sleep interrupted
 
 1. 这里多了一层FinalizableDelegatedExecutorService包装，使其无法成功向下转型。
 2. 其余的性质和fixedThreadPool相同。
-
-## cachedThreadPool
-
-```java
-     public static ExecutorService newCachedThreadPool() {
-        return new ThreadPoolExecutor(0, Integer.MAX_VALUE,
-                                      60L, TimeUnit.SECONDS,
-                                      new SynchronousQueue<Runnable>());
-    }
-```
-
-1. corePoolSize = 0，maximumPoolSize = Integer.MAX_VALUE，即线程数量几乎无限制；
-2. keepAliveTime = 60s，线程空闲60s后自动结束。
-3. workQueue为SynchronousQueue同步队列，使用SynchronousQueue的目的就是保证“对于提交的任务，如果有空闲线程，则使用空闲线程来处理；否则新建一个线程来处理任务”。
-4. 适用场景：快速处理大量耗时较短的任务，如Netty的NIO接受请求时，可使用。
-
