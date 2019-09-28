@@ -40,9 +40,9 @@
 
 # 并发基础
 
-## Daemon
+## daemon
 
-Daemon是是守护线程的意思，当所有的非守护线程结束的时候，整个进程结束，也就是说守护线程是为非守护线程服务的。
+daemon是是守护线程的意思，当所有的非守护线程结束的时候，整个线程结束，也就是说守护线程是为非守护线程服务的。
 
 此外main方法是非守护线程，也属于被服务对象。
 
@@ -64,6 +64,18 @@ public void run() {
     Thread.yield();
 }
 ```
+
+## join
+
+join()的作用是：“等待该线程终止”。这里需要理解的就是该线程是指的主线程等待子线程的终止。也就是在子线程调用了join()方法后面的代码，只有等到子线程结束了才能执行。
+
+```java
+Thread t = new AThread(); 
+t.start(); 
+t.join(); //表示需要等待t线程的结束，这个线程(通常是main)才能继续执行下去。
+```
+
+join的意思就是，执行的`t.join()`语句的线程，需要等待t线程结束。
 
 ## sleep
 
@@ -376,11 +388,13 @@ class SynchronizedExample {
 
 锁是用于通过多个线程控制对共享资源的访问的工具。通常，锁提供对共享资源的独占访问：一次只能有一个线程可以获取锁，并且对共享资源的所有访问都要求首先获取锁。但是，一些锁可能允许并发访问共享资源，如ReentrantLock、ReadWriteLock。
 
+### 可重入锁
+
 ReentrantLock对资源进行加锁,同一时刻只会有一个线程能够占有锁，当前锁被线程占有时，其他线程会进入挂起状态，直到该锁被释放，其他挂起的线程会被唤醒并开始新的竞争。
 
 从名字上理解，ReenTrantLock的字面意思就是再进入的锁，其实synchronized关键字所使用的锁也是可重入的，两者关于这个的区别不大。两者都是同一个线程每进入一次，锁的计数器都自增1，所以要等到锁的计数器下降为0时才能释放锁。
 
-### 可重入锁
+
 
 ```java
 package com.company;
@@ -422,32 +436,6 @@ class ReentrantLockMain {
     }
 }
 ```
-
-#### 比较
-
-##### 实现 
-
-synchronized是JVM 实现的，而ReentrantLock是JDK实现的。
-
-##### 性能
-
-新版本Java对synchronized进行了很多优化，例如自旋锁等，synchronized与ReentrantLock大致相同。
-
-##### 中断
-
-当持有锁的线程长期不释放锁的时候，正在等待的线程可以选择放弃等待，改为处理其他事情，ReentrantLock可中断，而synchronized不行。
-
-##### 公平锁
-
-公平锁是指多个线程在等待同一个锁时，按照申请锁的时间顺序来依次获得锁。synchronized中的锁是非公平的，ReentrantLock 默认情况下也是非公平的，但是也可以是公平的。
-
-##### 多个条件
-
-一个 ReentrantLock 可以同时绑定多个 Condition 对象。而synchronized只能随机通知一个，或者全部通知，使用Condition的ReentrantLock则分组唤醒需要唤醒的线程们。
-
-#### 使用选择
-
-除非需要使用ReentrantLock的高级功能，否则优先使用synchronized。这是因为synchronized是 JVM实现的一种锁机制，JVM 原生地支持它，而 ReentrantLock不是所有的JDK版本都支持。并且使用synchronized不用担心没有释放锁而导致死锁问题，因为JVM会确保锁的释放。
 
 ### 读写锁
 
@@ -663,8 +651,36 @@ lock对象、线程A和线程B三者是一种什么关系？根据上面的结�
 2. 线程A中执行lock的wait方法，把线程A保存到lock锁的阻塞队列中。
 3. 线程B中执行lock的notify方法，从lock锁的等待队列中取出线程A继续执行，若有多条线程被lock锁阻塞，则会随机唤醒一条线程继续执行。
 
-### wait() 和 sleep() 的区别 
 
-1. wait() 是 Object 的方法，而 sleep() 是 Thread 的静态方法。
-2. wait() 会释放锁，sleep() 不会。
 
+
+
+## 比较
+
+### 实现 
+
+synchronized是JVM 实现的，而ReentrantLock是JDK实现的。
+
+### 性能
+
+新版本Java对synchronized进行了很多优化，例如自旋锁等，synchronized与ReentrantLock大致相同。
+
+### 中断
+
+当持有锁的线程长期不释放锁的时候，正在等待的线程可以选择放弃等待，改为处理其他事情，ReentrantLock可中断，而synchronized不行。
+
+### 公平锁
+
+公平锁是指多个线程在等待同一个锁时，按照申请锁的时间顺序来依次获得锁。synchronized中的锁是非公平的，ReentrantLock 默认情况下也是非公平的，但是也可以是公平的。
+
+### 多个条件
+
+一个 ReentrantLock 可以同时绑定多个 Condition 对象。而synchronized只能随机通知一个，或者全部通知，使用Condition的ReentrantLock则分组唤醒需要唤醒的线程们。
+
+## 使用选择
+
+除非需要使用ReentrantLock的高级功能，否则优先使用synchronized。这是因为synchronized是 JVM实现的一种锁机制，JVM 原生地支持它，而 ReentrantLock不是所有的JDK版本都支持。并且使用synchronized不用担心没有释放锁而导致死锁问题，因为JVM会确保锁的释放。
+
+condition更加灵活。
+
+### 

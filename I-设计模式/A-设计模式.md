@@ -269,7 +269,6 @@ public class Client {
 
 ```java
 public class SimpleFactory {
-
     public Product createProduct(int type) {
         if (type == 1) {
             product = new ConcreteProduct1();
