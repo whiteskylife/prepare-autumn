@@ -48,7 +48,7 @@ Redis 支持很多特性，例如将内存中的数据持久化到硬盘中，�
 2. 可以通过语句操作这些field - value的集合。
 3. 可以分别获取所有 field 和 value。
 
-![Screen Shot 2019-08-25 at 00.03.57](./photo/KVhash.png)
+n
 
 ##ZSET
 

@@ -754,8 +754,6 @@ request2 is handle by ConcreteHandler2
 
 设计一个遥控器，可以控制电灯开关。
 
-<img src="./photo/开关.jpg)
-
 ```java
 public interface Command {
     void execute();
@@ -1442,7 +1440,7 @@ public class Client {
 
 天气数据布告板会在天气信息发生改变时更新其内容，布告板有多个，并且在将来会继续增加。
 
-<img src="./photo/观察者2.jpg)
+<img src="./photo/观察者2.jpg">
 
 ```java
 public interface Subject {
@@ -1569,7 +1567,7 @@ StatisticsDisplay.update: 1.0 1.0 1.0
 
 糖果销售机有多种状态，每种状态下销售机有不同的行为，状态可以发生转移，使得销售机的行为也发生改变。
 
-<img src="./photo/状态1.jpg)
+<img src="./photo/状态1.jpg">
 
 ```java
 public interface State {

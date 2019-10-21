@@ -81,7 +81,11 @@ select/poll/epoll 都是 I/O 多路复用的具体实现，select 出现的最�
 ## select
 
 ```c
-int select(int n, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, struct timeval *timeout);
+int select(int n, 
+           fd_set *readfds, 
+           fd_set *writefds, 
+           fd_set *exceptfds, 
+           struct timeval *timeout);
 ```
 
 select 允许应用程序监视一组文件描述符，等待一个或者多个描述符成为就绪状态，从而完成 I/O 操作。
